@@ -2,8 +2,8 @@ import java.util.ArrayList;
 import java.util.Scanner;
 import java.io.File;
 import java.io.IOException;
-//import java.util.Queue; //hint: might be useful for BFS - https://docs.oracle.com/javase/8/docs/api/java/util/Queue.html
-//import java.util.LinkedList; //hint: might be useful for BFS - https://docs.oracle.com/javase/8/docs/api/java/util/LinkedList.html
+import java.util.Queue; //hint: might be useful for BFS - https://docs.oracle.com/javase/8/docs/api/java/util/Queue.html
+import java.util.LinkedList; //hint: might be useful for BFS - https://docs.oracle.com/javase/8/docs/api/java/util/LinkedList.html
 //import java.util.Stack; //hint: might be useful for DFS - https://docs.oracle.com/javase/8/docs/api/java/util/Stack.html
 
 /**
@@ -108,9 +108,32 @@ public class Graph
       //Follow the algorithm described in 13.5.5 of your zyBook
       //It lays out the entire algorithm in psuedocode - you just need to convert it into java code
       //WRITE YOUR CODE HERE
+      Queue<Node> frontierQueue = new LinkedList<>();
+      ArrayList<Node> discoveredSet = new ArrayList<>();
+
+      Node startV = graph.get(0);
+      frontierQueue.add(startV);
+      discoveredSet.add(startV);
+
+      while (!frontierQueue.isEmpty()){
+         Node currentV = frontierQueue.poll();
+         
+         ArrayList<Node> adjV = currentV.getAdjacencyList();
+         for (Node adj : adjV){
+            if (!discoveredSet.contains(adj)){
+               frontierQueue.add(adj);
+               discoveredSet.add(adj);
+            }
+         }
+      }
+      
+
       
       System.out.println("BFS:");
       //print out the contents of discoveredSet - meaning the name of each node (don't use the toString() method since it includes the adjacency list)
+      for (Node node : discoveredSet ){
+         System.out.print(node.getName() + " ");
+      }
       System.out.println();
    }
    

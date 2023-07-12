@@ -34,7 +34,7 @@ public class Node
    */
    public ArrayList<Node> getAdjacencyList()
    {
-      return adjancencyList;//shallow copy is fine
+      return adjancencyList;//shallow copy is fine 
    }
    
    /**
