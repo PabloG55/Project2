@@ -112,7 +112,7 @@ public class Graph
       //Follow the algorithm described in 13.5.5 of your zyBook
       //It lays out the entire algorithm in psuedocode - you just need to convert it into java code
       //WRITE YOUR CODE HERE
-      
+
       //Create a Queue and an Array list.
       Queue<Node> frontierQueue = new LinkedList<>();
       ArrayList<Node> discoveredSet = new ArrayList<>();
@@ -161,9 +161,39 @@ public class Graph
       //Follow the algorithm described in 13.5.5 of your zyBook
       //It lays out the entire algorithm in psuedocode - you just need to convert it into java code
       //WRITE YOUR CODE HERE
-     
+
+      //Create a Stack and an Array list.
+      Stack<Node> stack = new Stack<>();
+      ArrayList<Node> visitedSet = new ArrayList<>();
+
+      //Declare an start node and add it to the stack.   
+      Node startV = graph.get(0);
+      stack.push(startV);
+
+      //Check that the Stack is not empty with a while loop.
+      while (!stack.isEmpty()){
+         //Initialize a current node with the node that is eliminated from the stack.
+         Node currentV = stack.pop();
+         
+         //Add the current node to the visited set if it is not already in.
+         if (!visitedSet.contains(currentV)){
+            visitedSet.add(currentV);
+
+            //Create an array list with the Adjacency list of the current node.
+            ArrayList<Node> adjV = currentV.getAdjacencyList();
+            
+            //Iterate over each adjacent node and add it to the stack.
+            for (Node adj : adjV){
+               stack.push(adj);
+            }
+         }
+      }
+ 
       System.out.println("DFS:");
       //print out the contents of visitedSet - meaning the name of each node (don't use the toString() method since it includes the adjacency list)
+      for (Node node : visitedSet){
+         System.out.print(node.getName() + " ");
+      }
       System.out.println();
    }
 }
