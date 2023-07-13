@@ -1,10 +1,14 @@
+/**
+ * Pablo Garces, 07/16/2023,
+ * This class represents an implementation of BFS and DFS algorithms in a graph.
+ */
 import java.util.ArrayList;
 import java.util.Scanner;
 import java.io.File;
 import java.io.IOException;
 import java.util.Queue; //hint: might be useful for BFS - https://docs.oracle.com/javase/8/docs/api/java/util/Queue.html
 import java.util.LinkedList; //hint: might be useful for BFS - https://docs.oracle.com/javase/8/docs/api/java/util/LinkedList.html
-//import java.util.Stack; //hint: might be useful for DFS - https://docs.oracle.com/javase/8/docs/api/java/util/Stack.html
+import java.util.Stack; //hint: might be useful for DFS - https://docs.oracle.com/javase/8/docs/api/java/util/Stack.html
 
 /**
 This class will be a driver class that demonstrates graph traversal algorithms
@@ -108,17 +112,25 @@ public class Graph
       //Follow the algorithm described in 13.5.5 of your zyBook
       //It lays out the entire algorithm in psuedocode - you just need to convert it into java code
       //WRITE YOUR CODE HERE
+      
+      //Create a Queue and an Array list.
       Queue<Node> frontierQueue = new LinkedList<>();
       ArrayList<Node> discoveredSet = new ArrayList<>();
 
+      //Declare an start node and add it to the Frontier queue and discovered set.
       Node startV = graph.get(0);
       frontierQueue.add(startV);
       discoveredSet.add(startV);
 
+      //Check that the Queue is not empty with a while loop.
       while (!frontierQueue.isEmpty()){
+         //Initialize a current node with the node that is eliminated from the frontier queue.
          Node currentV = frontierQueue.poll();
          
+         //Create an array list with the Adjacency list of the current node.
          ArrayList<Node> adjV = currentV.getAdjacencyList();
+
+         //Undiscovered vertices adjacent to currentV are enqueued in frontierQueue and added to discoveredSet. 
          for (Node adj : adjV){
             if (!discoveredSet.contains(adj)){
                frontierQueue.add(adj);
@@ -126,8 +138,6 @@ public class Graph
             }
          }
       }
-      
-
       
       System.out.println("BFS:");
       //print out the contents of discoveredSet - meaning the name of each node (don't use the toString() method since it includes the adjacency list)

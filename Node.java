@@ -1,3 +1,7 @@
+/**
+ * Pablo Garces, 07/16/2023,
+ * This class represents a Node.
+ */
 import java.util.ArrayList;
 
 /**
@@ -34,7 +38,7 @@ public class Node
    */
    public ArrayList<Node> getAdjacencyList()
    {
-      return adjancencyList;//shallow copy is fine 
+      return adjancencyList;//shallow copy is fine
    }
    
    /**
